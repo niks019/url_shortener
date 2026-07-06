@@ -1,0 +1,59 @@
+<div class="flex flex-col items-center mt-10">
+
+    <!-- Search Bar -->
+    <div class="flex border rounded-lg overflow-hidden">
+
+        <input [(ngModel)]="originalUrl" (keyup.enter)="onSearch()" type="text" placeholder="Search..."
+            class="px-4 py-2 w-172 focus:outline-none" />
+
+        <button (click)="onSearch()" [disabled]="isLoading"
+            class="bg-blue-600 text-white px-4 py-2 hover:bg-blue-700 disabled:bg-gray-400">
+            Search
+        </button>
+
+    </div>
+
+    <!-- Spinner BELOW -->
+    <div *ngIf="isLoading" class="mt-4 flex items-center space-x-2">
+
+        <svg class="animate-spin h-5 w-5 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none"
+            viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path>
+        </svg>
+
+        <span class="text-blue-600 text-sm">Loading...</span>
+
+    </div>
+
+</div>
+
+
+
+<div class="flex justify-center mt-10">
+  <div class="relative w-full max-w-3xl">
+
+    <!-- Textarea -->
+    <textarea
+      [(ngModel)]="shortUrl"
+      rows="8"
+      placeholder="URL Loads here..."
+      class="w-full p-4 pr-16 border rounded-lg shadow-sm resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
+    ></textarea>
+
+    <!-- Copy Button -->
+    <button
+      (click)="copyText()"
+      class="absolute bottom-3 right-3 bg-blue-600 text-white px-3 py-1 text-sm rounded hover:bg-blue-700 transition"
+    >
+      Copy
+    </button>
+
+  </div>
+</div>
+
+<div class="text-center mt-10">
+    <button routerLink="/geturls" class="cursor-pointer bottom-3 right-3 bg-blue-600 text-white px-3 py-1 text-lg rounded hover:bg-blue-700 transition">
+        View All Links
+    </button>
+</div>
