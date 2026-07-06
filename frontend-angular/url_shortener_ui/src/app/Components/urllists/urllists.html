@@ -1,0 +1,85 @@
+<div class="max-w-3xl mx-auto mt-10">
+
+  <h1 class="text-2xl font-bold mb-4 text-center">
+    List of URLs Shortened
+  </h1>
+
+  <!-- Loader -->
+  <div *ngIf="isLoading" class="text-center text-blue-600">
+    Loading...
+  </div>
+
+  <!-- Table -->
+  <table *ngIf="!isLoading" class="w-full border">
+    <thead class="bg-gray-200">
+      <tr>
+        <th class="p-2 border">URL ID</th>
+        <th class="p-2 border">Long URL</th>
+        <th class="p-2 border">Shortened URL</th>
+        <th class="p-2 border">Access Stats</th>
+        <th class="p-2 border">Created At</th>
+        <th class="p-2 border">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let url of urls" class="text-center">
+        <td class="p-2 border">{{ url.urlId }}</td>
+        <td class="p-2 border">{{ url.longUrl }}</td>
+        <td class="p-2 border">{{ url.shortenedUrl }}</td>
+        <td class="p-2 border">{{ url.accessStats }}</td>
+        <td class="p-2 border">{{ url.createdAt | date:'medium' }}</td>
+        <td class="p-2 border text-center">
+          <a (click)="delete(url.urlId)"><img src="delete.png" class="cursor-pointer mx-auto"></a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- <div class="pagination mt-5">
+    <button (click)="previousPage()" [disabled]="page === 0">
+      Previous
+    </button>
+    <span>Page {{ page + 1 }} of {{ totalPages }}</span>
+
+    <button (click)="nextPage()" [disabled]="page === totalPages - 1">
+      Next
+      </button>
+  </div> -->
+
+  <div class="flex items-center justify-center gap-6 mt-6">
+
+  <!-- Left Arrow -->
+  <div class="flex items-center gap-2">
+    <img
+      src="left_page.png"
+      alt="left arrow"
+      (click)="page !== 0 && previousPage()"
+      class="forPage w-6 h-6 transition"
+      [class.opacity-40]="page === 0"
+      [class.pointer-events-none]="page === 0"
+      [class.cursor-pointer]="page !== 0"
+      [class.hover:scale-110]="page !== 0"
+    />
+  </div>
+
+  <!-- Page Info -->
+  <span class="text-gray-700 font-medium">
+    Page {{ page + 1 }} of {{ totalPages }}
+  </span>
+
+  <!-- Right Arrow -->
+  <div class="flex items-center gap-2">
+    <img
+      src="right_page.png"
+      alt="right arrow"
+      (click)="page !== totalPages - 1 && nextPage()"
+      class="forPage w-6 h-6 transition"
+      [class.opacity-40]="page === totalPages - 1"
+      [class.pointer-events-none]="page === totalPages - 1"
+      [class.cursor-pointer]="page !== totalPages - 1"
+      [class.hover:scale-110]="page !== totalPages - 1"
+    />
+  </div>
+
+</div>
+</div>
